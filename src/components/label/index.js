@@ -55,7 +55,7 @@ export default class Label extends PureComponent {
       let toValue = this.inputState(props);
 
       Animated
-        .timing(input, { toValue, duration, useNativeDriver: true })
+        .timing(input, { toValue, duration, useNativeDriver: false })
         .start();
     }
 
@@ -63,7 +63,7 @@ export default class Label extends PureComponent {
       let toValue = this.focusState(props);
 
       Animated
-        .timing(focus, { toValue, duration, useNativeDriver: true })
+        .timing(focus, { toValue, duration, useNativeDriver: false })
         .start();
     }
   }
