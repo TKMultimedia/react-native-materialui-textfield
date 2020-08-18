@@ -74,6 +74,8 @@ export default class TextField extends PureComponent {
 
     label: PropTypes.string.isRequired,
     title: PropTypes.string,
+    fontLabel: PropTypes.string.isRequired,
+    fontInput: PropTypes.string.isRequired,
 
     characterRestriction: PropTypes.number,
 
@@ -160,7 +162,7 @@ export default class TextField extends PureComponent {
       let toValue = this.focusState(props.error, state.focused);
 
       Animated
-        .timing(focus, { toValue, duration })
+        .timing(focus, { toValue, duration, useNativeDriver: false })
         .start(this.onFocusAnimationEnd);
     }
   }
@@ -356,6 +358,8 @@ export default class TextField extends PureComponent {
       inputContainerStyle: inputContainerStyleOverrides,
       clearTextOnFocus,
       helpersNumberOfLines,
+      fontLabel,
+      fontInput,
       ...props
     } = this.props;
 
@@ -408,7 +412,7 @@ export default class TextField extends PureComponent {
     let inputStyle = {
       fontSize,
       textAlign,
-
+      fontFamily: fontInput,
       color: (disabled || defaultVisible)?
         baseColor:
         textColor,
@@ -500,6 +504,7 @@ export default class TextField extends PureComponent {
       errored,
       restricted,
       style: labelTextStyle,
+      fontLabel
     };
 
     let counterProps = {
