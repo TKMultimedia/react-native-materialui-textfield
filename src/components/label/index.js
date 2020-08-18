@@ -29,7 +29,8 @@ export default class Label extends PureComponent {
 
     animationDuration: PropTypes.number.isRequired,
 
-    style: Text.propTypes,
+    style: Text.propTypes.style,
+    fontLabel: PropTypes.string.isRequired,
 
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
@@ -54,7 +55,7 @@ export default class Label extends PureComponent {
       let toValue = this.inputState(props);
 
       Animated
-        .timing(input, { toValue, duration })
+        .timing(input, { toValue, duration, useNativeDriver: true })
         .start();
     }
 
@@ -62,7 +63,7 @@ export default class Label extends PureComponent {
       let toValue = this.focusState(props);
 
       Animated
-        .timing(focus, { toValue, duration })
+        .timing(focus, { toValue, duration, useNativeDriver: true })
         .start();
     }
   }
@@ -92,6 +93,7 @@ export default class Label extends PureComponent {
       active,
       focused,
       animationDuration,
+      fontLabel,
       ...props
     } = this.props;
 
@@ -115,7 +117,7 @@ export default class Label extends PureComponent {
         inputRange: [0, 1],
         outputRange: [fontSize, activeFontSize],
       }),
-
+      fontFamily: fontLabel,
       color,
     };
 
